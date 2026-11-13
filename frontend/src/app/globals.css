@@ -1,0 +1,699 @@
+@import "tailwindcss";
+
+/* ============================================================
+   STACKLY — MIDNIGHT PURPLE / PLAYFUL PROFESSIONAL DESIGN SYSTEM
+   Centralized Design Tokens & Color Hierarchy
+   ============================================================ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-foreground: var(--foreground);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-card: var(--surface-card);
+  --color-surface-higher: var(--surface-higher);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  /* Signature Purples & Violets */
+  --color-purple-primary: var(--purple-primary);
+  --color-purple-soft: var(--purple-soft);
+  --color-purple-electric: var(--purple-electric);
+  --color-purple-muted: var(--purple-muted);
+
+  /* Semantic State Colors */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: #ffffff;
+
+  /* Typography Colors */
+  --color-warm-white: var(--warm-white);
+  --color-heading: var(--heading);
+  --color-body: var(--body);
+  --color-text-secondary: var(--text-secondary);
+  --color-muted: var(--surface-elevated);
+  --color-muted-foreground: var(--text-muted);
+
+  /* Containers & Popovers */
+  --color-card: var(--surface-card);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--surface-elevated);
+  --color-popover-foreground: var(--foreground);
+  --color-accent: var(--surface-higher);
+  --color-accent-foreground: var(--foreground);
+
+  /* Borders & Inputs */
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Backward Compatibility Signal Token */
+  --color-signal: var(--purple-electric);
+  --color-signal-foreground: #09070d;
+
+  /* Radii */
+  --radius-btn: 11px;
+  --radius-input: 11px;
+  --radius-card: 16px;
+  --radius-panel: 22px;
+  --radius-tag: 9999px;
+  --radius: 14px;
+
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-sans);
+}
+
+:root {
+  /* 1. Midnight Surfaces (70% dominant) */
+  --background: #09070d;
+  --background-secondary: #0f0b16;
+  --surface-elevated: #15101e;
+  --surface-card: #191321;
+  --surface-higher: #20172a;
+
+  /* 2. Purples & Violets (8% accents, 2% interactive highlights) */
+  --purple-primary: #7c3aed;
+  --purple-soft: #9b6dff;
+  --purple-electric: #b88cff;
+  --purple-muted: #5b3a7d;
+
+  /* 3. Typography (20% white/muted hierarchy) */
+  --foreground: #faf7ff;
+  --warm-white: #f8f5ff;
+  --heading: #faf7ff;
+  --body: #d8d1e0;
+  --text-secondary: #b8afc4;
+  --text-muted: #9c92a8;
+
+  /* 4. Semantic Actions */
+  --primary: #7c3aed;
+  --primary-foreground: #faf7ff;
+  --secondary: #15101e;
+  --secondary-foreground: #faf7ff;
+
+  --success: #46d369;
+  --warning: #f5b84b;
+  --danger: #ff5c70;
+  --info: #6ea8ff;
+
+  /* 5. Borders & Rings */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(184, 140, 255, 0.18);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgba(184, 140, 255, 0.35);
+
+  --radius: 14px;
+}
+
+/* ============================================================
+   GLOBAL RESET / BASE
+   ============================================================ */
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--background);
+}
+
+body {
+  background: var(--background);
+  color: var(--body);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.012em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading);
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+
+.font-display {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* ============================================================
+   PURPLE LIGHTING SYSTEM (Atmospheric & Subtle)
+   No blinding neon blooms. Gentle, organic ambient light.
+   ============================================================ */
+
+/* ── Gradient Orb Animations ── */
+@keyframes orb-drift-a {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  25% {
+    transform: translate(60px, -45px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(0.94);
+  }
+  75% {
+    transform: translate(35px, 15px) scale(1.06);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+@keyframes orb-drift-b {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  30% {
+    transform: translate(-50px, 35px) scale(1.08);
+  }
+  60% {
+    transform: translate(30px, -25px) scale(0.95);
+  }
+  80% {
+    transform: translate(-15px, 10px) scale(1.03);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+@keyframes orb-drift-c {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  40% {
+    transform: translate(45px, 50px) scale(1.06);
+  }
+  70% {
+    transform: translate(-30px, 20px) scale(0.97);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.bg-midnight-glow {
+  background:
+    radial-gradient(
+      circle 900px at 50% -80px,
+      rgba(124, 58, 237, 0.18),
+      transparent 70%
+    ),
+    radial-gradient(
+      circle 650px at 88% 180px,
+      rgba(155, 109, 255, 0.09),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle 400px at 10% 60%,
+      rgba(184, 140, 255, 0.06),
+      transparent 55%
+    );
+  animation: orb-drift-a 20s ease-in-out infinite;
+  will-change: transform;
+  contain: style;
+}
+
+.bg-violet-atmosphere {
+  background:
+    radial-gradient(
+      ellipse 95% 45% at 50% 100%,
+      rgba(91, 58, 125, 0.1),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 65% 55% at 12% 40%,
+      rgba(184, 140, 255, 0.07),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle 500px at 80% 30%,
+      rgba(124, 58, 237, 0.05),
+      transparent 65%
+    );
+  animation: orb-drift-b 26s ease-in-out infinite;
+  will-change: transform;
+  contain: style;
+}
+
+.bg-glow-signal,
+.section-bg-cta-glow {
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 10%,
+    rgba(124, 58, 237, 0.16) 0%,
+    rgba(155, 109, 255, 0.04) 45%,
+    transparent 75%
+  );
+  animation: orb-drift-c 16s ease-in-out infinite;
+  will-change: transform;
+  contain: style;
+}
+
+/* Static aurora surface for ProfilePreview card — NO animation/transform.
+   The animated orbs only belong on the fixed background layers in layout.tsx. */
+.preview-aurora-surface {
+  background:
+    radial-gradient(
+      circle 700px at 50% -60px,
+      rgba(124, 58, 237, 0.12),
+      transparent 65%
+    ),
+    radial-gradient(
+      circle 500px at 85% 30%,
+      rgba(155, 109, 255, 0.06),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle 350px at 10% 70%,
+      rgba(184, 140, 255, 0.04),
+      transparent 50%
+    );
+}
+
+/* ============================================================
+   GUN.LOL-STYLE LINKCARD PAGE BACKGROUNDS
+   Per-developer customizable surface system.
+   Each class is a full-page bg applied to the linkcard wrapper.
+   ============================================================ */
+
+/* Noise texture overlay (used as a pseudo-element on top of any bg) */
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  mix-blend-mode: overlay;
+}
+
+/* ── Linkcard page surface variants ── */
+
+/* Signal / Midnight Purple (default) */
+.lc-surface-signal {
+  background-color: #09070d;
+  background-image:
+    radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(124, 58, 237, 0.28) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 90% 80%,
+      rgba(155, 109, 255, 0.12) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 40% 35% at 5% 60%,
+      rgba(91, 58, 125, 0.1) 0%,
+      transparent 55%
+    );
+}
+
+/* Ocean / Cyan Teal */
+.lc-surface-ocean {
+  background-color: #040d12;
+  background-image:
+    radial-gradient(
+      ellipse 75% 50% at 50% -5%,
+      rgba(6, 182, 212, 0.22) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 85% 75%,
+      rgba(34, 211, 238, 0.1) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 45% 35% at 10% 55%,
+      rgba(8, 145, 178, 0.08) 0%,
+      transparent 55%
+    );
+}
+
+/* Ember / Amber Orange */
+.lc-surface-ember {
+  background-color: #0e0800;
+  background-image:
+    radial-gradient(
+      ellipse 78% 50% at 50% -8%,
+      rgba(234, 88, 12, 0.25) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 52% 40% at 88% 78%,
+      rgba(249, 115, 22, 0.11) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 42% 32% at 8% 60%,
+      rgba(180, 60, 0, 0.09) 0%,
+      transparent 55%
+    );
+}
+
+/* Jade / Emerald Green */
+.lc-surface-jade {
+  background-color: #030e08;
+  background-image:
+    radial-gradient(
+      ellipse 76% 50% at 50% -6%,
+      rgba(5, 150, 105, 0.24) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 50% 38% at 86% 76%,
+      rgba(16, 185, 129, 0.1) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 40% 34% at 9% 58%,
+      rgba(4, 120, 87, 0.09) 0%,
+      transparent 55%
+    );
+}
+
+/* Rose / Crimson */
+.lc-surface-rose {
+  background-color: #0e0408;
+  background-image:
+    radial-gradient(
+      ellipse 78% 52% at 50% -8%,
+      rgba(225, 29, 72, 0.24) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 52% 40% at 87% 77%,
+      rgba(244, 63, 94, 0.1) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 42% 34% at 8% 60%,
+      rgba(159, 18, 57, 0.09) 0%,
+      transparent 55%
+    );
+}
+
+/* Ice / Arctic Blue */
+.lc-surface-ice {
+  background-color: #04080f;
+  background-image:
+    radial-gradient(
+      ellipse 76% 50% at 50% -5%,
+      rgba(59, 130, 246, 0.22) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 50% 38% at 85% 75%,
+      rgba(96, 165, 250, 0.1) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 40% 33% at 10% 58%,
+      rgba(37, 99, 235, 0.09) 0%,
+      transparent 55%
+    );
+}
+
+/* Gold / Champagne */
+.lc-surface-gold {
+  background-color: #0c0900;
+  background-image:
+    radial-gradient(
+      ellipse 76% 50% at 50% -6%,
+      rgba(202, 138, 4, 0.26) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 50% 38% at 86% 76%,
+      rgba(234, 179, 8, 0.11) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 40% 32% at 9% 58%,
+      rgba(161, 98, 0, 0.09) 0%,
+      transparent 55%
+    );
+}
+
+/* Mono / Pure Monochrome */
+.lc-surface-mono {
+  background-color: #0a0a0a;
+  background-image:
+    radial-gradient(
+      ellipse 72% 48% at 50% -5%,
+      rgba(226, 232, 240, 0.1) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 48% 36% at 85% 74%,
+      rgba(200, 210, 220, 0.05) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 38% 30% at 10% 56%,
+      rgba(180, 190, 200, 0.04) 0%,
+      transparent 55%
+    );
+}
+
+/* ── Card glass surface (floats on lc-surface backgrounds) ── */
+.lc-card-glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Link button hover glows by accent ── */
+.lc-link-hover-signal:hover {
+  border-color: rgba(184, 140, 255, 0.35) !important;
+  box-shadow: 0 0 16px -4px rgba(124, 58, 237, 0.3);
+}
+.lc-link-hover-ocean:hover {
+  border-color: rgba(34, 211, 238, 0.35) !important;
+  box-shadow: 0 0 16px -4px rgba(6, 182, 212, 0.28);
+}
+.lc-link-hover-ember:hover {
+  border-color: rgba(249, 115, 22, 0.35) !important;
+  box-shadow: 0 0 16px -4px rgba(234, 88, 12, 0.28);
+}
+.lc-link-hover-jade:hover {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  box-shadow: 0 0 16px -4px rgba(5, 150, 105, 0.28);
+}
+.lc-link-hover-rose:hover {
+  border-color: rgba(244, 63, 94, 0.35) !important;
+  box-shadow: 0 0 16px -4px rgba(225, 29, 72, 0.28);
+}
+.lc-link-hover-ice:hover {
+  border-color: rgba(96, 165, 250, 0.35) !important;
+  box-shadow: 0 0 16px -4px rgba(59, 130, 246, 0.28);
+}
+.lc-link-hover-gold:hover {
+  border-color: rgba(234, 179, 8, 0.35) !important;
+  box-shadow: 0 0 16px -4px rgba(202, 138, 4, 0.28);
+}
+.lc-link-hover-mono:hover {
+  border-color: rgba(226, 232, 240, 0.2) !important;
+  box-shadow: 0 0 12px -4px rgba(200, 210, 220, 0.15);
+}
+
+.section-bg-card-tint {
+  background: linear-gradient(
+    180deg,
+    rgba(25, 19, 33, 0.85) 0%,
+    rgba(15, 11, 22, 0.95) 100%
+  );
+}
+
+/* ============================================================
+   GRADIENT TEXT
+   ============================================================ */
+
+.text-gradient {
+  background: linear-gradient(180deg, #faf7ff 10%, #b8afc4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple,
+.text-gradient-signal {
+  background: linear-gradient(135deg, #f8f5ff 0%, #b88cff 50%, #9b6dff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   TACTILE MICRO-INTERACTIONS & ANIMATIONS
+   ============================================================ */
+
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+}
+.animate-pulse-dot {
+  animation: pulse-subtle 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes ping-restrained {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  80%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.animate-ping-slow {
+  animation: ping-restrained 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes spin-clean {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-clean 0.85s linear infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ============================================================
+   DIVIDERS & HAUS BORDERS
+   ============================================================ */
+
+.divider-soft {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  height: 1px;
+}
+
+.border-subtle {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.border-violet-glow {
+  border-color: rgba(184, 140, 255, 0.18);
+  box-shadow: 0 0 15px -3px rgba(124, 58, 237, 0.12);
+}
+
+/* ============================================================
+   ACCESSIBILITY & SELECTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.35);
+  color: #faf7ff;
+}
+
+/* ============================================================
+   FORM INPUTS & SCROLLBARS
+   ============================================================ */
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(184, 140, 255, 0.25);
+  background-clip: padding-box;
+}

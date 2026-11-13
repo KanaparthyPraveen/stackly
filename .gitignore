@@ -1,0 +1,31 @@
+# Dependencies and generated output
+**/node_modules/
+**/.next/
+**/dist/
+**/build/
+**/coverage/
+**/*.tsbuildinfo
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Runtime data and logs
+backend/uploads/
+**/*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# Original standalone checkouts used to assemble this monorepo
+/stackly-frontend/
+/stackly-backend/
+
+# Local tooling
+.DS_Store
+.idea/
+.vscode/

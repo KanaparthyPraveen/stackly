@@ -1,0 +1,47 @@
+name: PR Title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  lint-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Conventional Commits title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            hotfix
+            chore
+            docs
+            refactor
+            perf
+            test
+            ci
+            build
+            style
+            revert
+            release
+          requireScope: false
+          subjectPattern: '.+'
+      - name: Require Plane reference [STACKRYZE-<id>]
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if echo "$TITLE" | grep -qiE '^(release|revert)'; then
+            echo "release/revert PR — Plane reference not required."
+            exit 0
+          fi
+          if ! echo "$TITLE" | grep -qE '\[STACKRYZE-[0-9]+\]'; then
+            echo "::error::PR title must reference a Plane work item in brackets so Plane links it and automates its state, e.g. [STACKRYZE-20]."
+            exit 1
+          fi
+          echo "Plane reference found."

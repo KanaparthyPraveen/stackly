@@ -1,0 +1,1 @@
+node scripts/insert-ticket-ref.mjs "$1" "$2"

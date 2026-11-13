@@ -1,0 +1,12 @@
+# <type>(<scope>): STACKRYZE-<id> <subject>   (<= 100 chars, imperative, lowercase, no period)
+#
+# <body: what & why, wrapped at 100 cols>
+#
+# BREAKING CHANGE: <describe the break, if any>
+#
+# The STACKRYZE-<id> is taken from the branch name and auto-inserted for `git commit -m`.
+# Allowed types:
+#   feat fix hotfix chore docs refactor perf test ci build style revert
+# Examples:
+#   feat(auth): STACKRYZE-20 add stackryze-auth token guard
+#   fix(links): STACKRYZE-41 stop expiring links from 404-ing before their TTL
